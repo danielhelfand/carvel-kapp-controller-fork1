@@ -24,13 +24,9 @@ jobs:
           kbld: v0.31.0
 
       - name: Login to GitHub Container Registry and run release
-        uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -e -x
+          docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
           ./hack/build-release.sh
 
       - name: Upload release yaml
