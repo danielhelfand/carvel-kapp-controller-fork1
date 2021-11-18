@@ -41,8 +41,9 @@ jobs:
           name: ${{ github.ref }}
           token: ${{ secrets.GITHUB_TOKEN }}
           body_path: ./tmp/checksums.txt
-          prerelease: true
           files: ./tmp/release.yml
+          draft: true
+          prerelease: true
 
       - name: Get uploaded release YAML checksum
         uses: actions/github-script@v4
